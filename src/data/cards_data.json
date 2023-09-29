@@ -1,0 +1,37 @@
+[
+    {
+        "title": "Awwards",
+        "para": "awwwards clone.",
+        "image": "../firstgif.gif",
+        "desc": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nulla natus nam alias tempore beatae cum sapiente, facilis illum nobis, nisi doloribus sequi, nostrum saepe fuga ex harum? Porro, quo optio?",
+        "bgcolor": "#f53232"
+    },
+    {
+        "title": "Veneria",
+        "para": "Veneria clone.",
+        "image": "../ohio.gif",
+        "desc": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nulla natus nam alias tempore beatae cum sapiente, facilis illum nobis, nisi doloribus sequi, nostrum saepe fuga ex harum? Porro, quo optio?",
+        "bgcolor": "#ff5e00"
+    },
+    {
+        "title": "Infos",
+        "para": "infos clone.",
+        "image": "../jio.gif",
+        "desc": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nulla natus nam alias tempore beatae cum sapiente, facilis illum nobis, nisi doloribus sequi, nostrum saepe fuga ex harum? Porro, quo optio?",
+        "bgcolor": "#2b26c3"
+    },
+    {
+        "title": "Rocket",
+        "para": "RocketAir clone.",
+        "image": "../rocket.gif",
+        "desc": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nulla natus nam alias tempore beatae cum sapiente, facilis illum nobis, nisi doloribus sequi, nostrum saepe fuga ex harum? Porro, quo optio?",
+        "bgcolor": "#0091ff"
+    },
+    {
+        "title": "odisej",
+        "para": "Hotel odisej clone.",
+        "image": "../odisej.gif",
+        "desc": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nulla natus nam alias tempore beatae cum sapiente, facilis illum nobis, nisi doloribus sequi, nostrum saepe fuga ex harum? Porro, quo optio?",
+        "bgcolor": "#366622"
+    }
+]

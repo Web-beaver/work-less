@@ -1,0 +1,44 @@
+.red{
+    display: flex;
+    width: 59.72vw;
+    height: 100%;
+    justify-content: center;
+}
+
+.orange{
+    display: flex;
+    width: 59.72vw;
+    height: 100%;
+    justify-content: center;
+}
+.purple{
+    display: flex;
+    width: 59.72vw;
+    height: 100%;
+    justify-content: center;
+}
+/* .container {
+	width: 400%;
+	height: 100vh;
+	display: flex;
+	flex-wrap: nowrap;
+} */
+
+.w1-v1{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.v1-work{
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+.dabba-wrapper div{
+    margin-left: 80px ;
+}
+.dabba-wrapper div:nth-child(even){
+    margin-left: 100px ;
+}

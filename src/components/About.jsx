@@ -17,7 +17,7 @@ function About({ src1, src2 }) {
   return (
     <>
       <div id="about">
-        <Fade direction="left" className='fadewidth' >
+        <Fade direction="left" className='fadewidth' triggerOnce>
           <div id='card' >
             <img src={src1} height={220} width={220}alt="" />
             <div id="textabout">
@@ -30,7 +30,7 @@ function About({ src1, src2 }) {
       </div>
       { src2 &&
       <div id="about" className='toopp'>
-        <Fade direction="left" className='fadewidth'>
+        <Fade direction="left" className='fadewidth' triggerOnce>
           <div id='card'>
             <img src={src2} alt="" height={200} width={200}/>
             <div id="textabout">

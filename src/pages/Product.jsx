@@ -96,9 +96,10 @@ function Product() {
       entries.forEach((entry)=>{
         if(entry.isIntersecting && !entry.target.classList.contains("show")){
           entry.target.classList.add("show");
-        }if(!entry.isIntersecting && entry.target.classList.contains("show")){
-          entry.target.classList.remove("show");
         }
+        // if(!entry.isIntersecting && entry.target.classList.contains("show")){
+        //   entry.target.classList.remove("show");
+        // }
       })
     },{
       // root:document.querySelector(".project-container"),

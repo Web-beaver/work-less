@@ -12,6 +12,9 @@ html.has-scroll-smooth {
 }
 
 @media  screen and (max-width:1400px) {
+  *{
+    -webkit-tap-highlight-color: transparent;
+  }
 
   html,body{
     width: 100%;

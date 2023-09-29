@@ -407,9 +407,11 @@ function MobileConnect() {
             </div>
           </div>
           <div className="connect-container">
+          <div className="threeD-container">
             <Suspense fallback={<LazySpinnerLoader></LazySpinnerLoader>}>
               <V2></V2>
             </Suspense>
+            </div>
             <div className="connect-options">
               <div className="connect-option-list">
                 <FontAwesomeIcon icon={faYoutube} size='2x' style={{ color: 'white', opacity: "0.7" }} />

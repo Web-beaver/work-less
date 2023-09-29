@@ -270,7 +270,18 @@
 #o {
   border-radius: 50%;
 }
-
+.threeD-container{
+  height:300px;
+  width: 450px;
+}
+.three_3d{
+  height:100%;
+  width:100%;
+}
+.three_3d>video{
+height: 100%;
+width: 100%;
+}
 @media only screen and (max-width: 600px) {
   #hero {
     height: 83vh;

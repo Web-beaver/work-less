@@ -38,7 +38,7 @@ function Root() {
   useEffect(() => {
     setTimeout(() => {
       slideUp();
-    }, 120);
+    }, 12000);
   }, [])
   return (
     <>

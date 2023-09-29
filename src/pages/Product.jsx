@@ -8,7 +8,6 @@ import Footer from "../components/Footer";
 import SideBar from '../components/Footer';
 import { scrollAnimation } from '../components/Navbar';
 import { gsap } from 'gsap';
-import { ScrollTrigger } from 'gsap/all';
 import "./product.css";
 import ohio from "../ohio.gif"
 import IshanResume from "../Ishan.pdf";
@@ -92,25 +91,23 @@ function Product() {
       }
     });
     setLoco(locoScroll);
-    // locoScroll.on("scroll", ScrollTrigger.update);
-    // ScrollTrigger.scrollerProxy("#main", {
-    //   scrollTop(value) {
-    //     return arguments.length ? locoScroll.scrollTo(value, 0, 0) : locoScroll.scroll.instance.scroll.y;
-    //   },
-    //   getBoundingClientRect() {
-    //     return { top: 0, left: 0, width: window.innerWidth, height: window.innerHeight };
-    //   },
-    //   pinType: document.querySelector("#main").style.transform ? "transform" : "fixed"
-    // });
-    // try {
-    //   ScrollTrigger.addEventListener('refresh', () => locoScroll.update());
-    //   ScrollTrigger.refresh();
-    // }
-    // catch (e) {
-    // }
-    // fadeInanimation();
-    // const animatedText = document.querySelectorAll(".build-in-slideX-left");
-    // animatedText.forEach((ele)=>textObserver.observe(ele));
+    const observer = new IntersectionObserver((entries)=>{
+  
+      entries.forEach((entry)=>{
+        if(entry.isIntersecting && !entry.target.classList.contains("show")){
+          entry.target.classList.add("show");
+        }if(!entry.isIntersecting && entry.target.classList.contains("show")){
+          entry.target.classList.remove("show");
+        }
+      })
+    },{
+      // root:document.querySelector(".project-container"),
+      // rootMargin:"2px",
+      threshold:0.95
+    })
+
+    const gif = document.querySelector(".gif-container");
+    observer.observe(gif);
     return () => {
       locoScroll.destroy();
     };

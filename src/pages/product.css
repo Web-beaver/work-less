@@ -13,9 +13,13 @@
     filter: grayscale(1);
     padding-top: 10px;
     transition: all ease-in-out 1s;
+    transform: scale(90%,90%);
 }
 .gif-container:hover{
     filter: grayscale(0);
+}
+.gif-container.show{
+    transform: scale(120%,120%);
 }
 .gif-container>img{
     height: 100%;

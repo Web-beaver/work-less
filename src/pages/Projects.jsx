@@ -123,7 +123,7 @@ function Projects() {
 
     setLoco(locoScroll);
     locoScroll.on("scroll", ScrollTrigger.update);
-
+    
     ScrollTrigger.scrollerProxy("#main", {
       scrollTop(value) {
         return arguments.length ? locoScroll.scrollTo(value, 0, 0) : locoScroll.scroll.instance.scroll.y;
@@ -217,17 +217,13 @@ function Projects() {
         dabba.classList.remove("animate");
       }
     });
+    addHorizontalScrollAnimation();
   }, []);
   useEffect(() => {
     if (showMenu == null || showMenu == false) return;
     attachScrollEvent(loco);
 
   }, [showMenu])
-  useEffect(() => {
-    setTimeout(() => {
-      addHorizontalScrollAnimation();
-    }, 2200)
-  }, [])
   const showResumeAnimation = (event) => {
 
     event.stopPropagation()

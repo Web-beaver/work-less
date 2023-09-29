@@ -8,11 +8,13 @@ import Footer from "../components/Footer";
 import SideBar from '../components/Footer';
 import { scrollAnimation } from '../components/Navbar';
 import { gsap } from 'gsap';
+import { ScrollTrigger } from 'gsap/all';
 import "./product.css";
 import ohio from "../ohio.gif"
 import IshanResume from "../Ishan.pdf";
 import SanyamResume from "../sanyam_main_resume.pdf";
 import Sphere from "../Sphere.mp4";
+gsap.registerPlugin(ScrollTrigger);
 // gsap.registerPlugin(ScrollTrigger);
 // let tl = gsap.timeline();
 // tl.to(".content-header-skill",{
@@ -34,8 +36,20 @@ import Sphere from "../Sphere.mp4";
 function Product() {
   const navigate = useNavigate();
 
-  const navigateHandler = (path) => {
-    navigate(path);
+  const addScaleAnimation = ()=>{
+
+    gsap.to(".gif-container", {
+      scale:1.2,
+      scrollTrigger: {
+        scroller: "#main",
+        trigger: ".project-container",
+        start: "top 20%",
+        pin: true,
+        scrub: true,
+        end:"top 30%",
+        markers: true
+      }
+    });
   }
 
   const [dateState, setDateState] = useState(new Date());
@@ -91,23 +105,23 @@ function Product() {
       }
     });
     setLoco(locoScroll);
-    const observer = new IntersectionObserver((entries)=>{
-  
-      entries.forEach((entry)=>{
-        if(entry.isIntersecting && !entry.target.classList.contains("show")){
-          entry.target.classList.add("show");
-        }if(!entry.isIntersecting && entry.target.classList.contains("show")){
-          entry.target.classList.remove("show");
-        }
-      })
-    },{
-      // root:document.querySelector(".project-container"),
-      // rootMargin:"2px",
-      threshold:0.95
-    })
+    locoScroll.on("scroll", ScrollTrigger.update);
+    ScrollTrigger.scrollerProxy("#main", {
+      scrollTop(value) {
+        return arguments.length ? locoScroll.scrollTo(value, 0, 0) : locoScroll.scroll.instance.scroll.y;
+      },
+      getBoundingClientRect() {
+        return { top: 0, left: 0, width: window.innerWidth, height: window.innerHeight };
+      },
+      pinType: document.querySelector("#main").style.transform ? "transform" : "fixed"
+    });
+    try {
+      ScrollTrigger.addEventListener('refresh', () => locoScroll.update());
+      ScrollTrigger.refresh();
+    }
+    catch (e) {
 
-    const gif = document.querySelector(".gif-container");
-    observer.observe(gif);
+    }
     return () => {
       locoScroll.destroy();
     };
@@ -161,6 +175,7 @@ function Product() {
         });
       }
     });
+    addScaleAnimation();
   }, []);
   useEffect(() => {
     if (showMenu == null || showMenu == false) return;

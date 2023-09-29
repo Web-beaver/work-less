@@ -13,10 +13,20 @@
     filter: grayscale(1);
     padding-top: 10px;
     transition: all ease-in-out 1s;
+<<<<<<< HEAD
+    transform: scale(80%,80%);
+=======
+>>>>>>> e0750cff7d15fbccb195bda15f00b8e156b2b543
 }
 .gif-container:hover{
     filter: grayscale(0);
 }
+<<<<<<< HEAD
+.gif-container.show{
+    transform: scale(100%,100%);
+}
+=======
+>>>>>>> e0750cff7d15fbccb195bda15f00b8e156b2b543
 .gif-container>img{
     height: 100%;
     width: 100%;
@@ -173,7 +183,7 @@ color: white;
         padding-right: 0px;
         height: fit-content;
     }
-    .sphere-video>video{
+    .sphere-video{
         height: 30vh !important;
     }
     .project-live-button{
@@ -193,12 +203,12 @@ color: white;
     font-size: 1.2rem;
 }
 .sphere-video{
-    height:fit-content;
+    height:80vh;
     width: 80%;
     margin: 0 auto;
 }
 .sphere-video>video{
-    height: 80vh;
+    height: 100%;
     width: 100%;
 }
 .vision-details{

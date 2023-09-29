@@ -1,7 +1,7 @@
 import React from 'react'
 import { useNavigate } from "react-router-dom";
 import './Cards.css'
-
+import ohio from "../ohio.gif"
 function WorkCards({title,para,imageurl,cardText,backcolor}) {
   const navigate = useNavigate();
 
@@ -15,7 +15,7 @@ function WorkCards({title,para,imageurl,cardText,backcolor}) {
           <h2>{title}</h2>
           <i class="fas fa-arrow-right"></i>
           <p>{para}</p>
-          <div class="pic" style={{backgroundImage:`url(${imageurl})`}}></div>
+          <div class="pic" style={{backgroundImage:`url(${ohio})`}}></div>
           <ul>
             <li></li>
             <li></li>

@@ -80,7 +80,7 @@
 .testimonials__author {
   display: flex;
   flex-direction: column;
-  align-items: end;
+  align-items: flex-end;
   font-size: large;
   font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
 

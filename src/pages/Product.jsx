@@ -105,6 +105,23 @@ function Product() {
       }
     });
     setLoco(locoScroll);
+<<<<<<< HEAD
+    const observer = new IntersectionObserver((entries)=>{
+  
+      entries.forEach((entry)=>{
+        if(entry.isIntersecting && !entry.target.classList.contains("show")){
+          entry.target.classList.add("show");
+        }
+        // if(!entry.isIntersecting && entry.target.classList.contains("show")){
+        //   entry.target.classList.remove("show");
+        // }
+      })
+    },{
+      // root:document.querySelector(".project-container"),
+      // rootMargin:"2px",
+      threshold:0.95
+    })
+=======
     locoScroll.on("scroll", ScrollTrigger.update);
     ScrollTrigger.scrollerProxy("#main", {
       scrollTop(value) {
@@ -120,6 +137,7 @@ function Product() {
       ScrollTrigger.refresh();
     }
     catch (e) {
+>>>>>>> e0750cff7d15fbccb195bda15f00b8e156b2b543
 
     }
     return () => {

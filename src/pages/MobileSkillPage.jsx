@@ -295,9 +295,11 @@ function MobileSkillPage() {
 
           <div className="xl-container">
             <div className="nidhi">
+              <div className="threeD-container">
               <Suspense fallback={<LazySpinnerLoader></LazySpinnerLoader>}>
                 <V1></V1>
               </Suspense>
+              </div>
               <div className="lineSVG">
                 <svg width="348" height="2700" viewBox="0 0 348 1850" fill="none">
                   <path xmlns="http://www.w3.org/2000/svg" d="M 346.497 1549 L 346.5 1457.5 C 346.5 1448.66 339.336 1441.5 330.5 1441.5 L 17 1441.5 C 8.164 1441.5 1 1434.34 1 1425.5 L -2.286 -1101.351" stroke="url(#paint0_linear_207_14200)" stroke-width="4" stroke-linecap="round" />

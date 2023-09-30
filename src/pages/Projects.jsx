@@ -18,6 +18,7 @@ import p1 from "../v1.webm";
 import p2 from "../v2.webm";
 import p3 from "../v3.webm";
 import p4 from "../v4.webm";
+import { Cubic } from 'gsap';
 gsap.registerPlugin(ScrollTrigger);
 // let tl = gsap.timeline();
 // tl.to(".content-header-skill",{
@@ -46,6 +47,59 @@ function Projects() {
   const [showMenu, setShowMenu] = useState(null);
   const [mobileMenu, setMobileMenu] = useState(false);
   const [loco, setLoco] = useState(null);
+
+  const addScaleAnimation = ()=>{
+
+    gsap.to(".red", {
+      ease:Cubic.easeOut,
+      scale:1.0,
+      scrollTrigger: {
+        scroller: "#main",
+        trigger: ".dabba-wrapper",
+        start: "top 20%",
+        pin: true,
+        scrub: true,
+        end:"top 30%",
+        markers: true
+      }
+    });
+    gsap.to(".orange", {
+      scale:1.0,
+      scrollTrigger: {
+        scroller: "#main",
+        trigger: ".red",
+        start: "top 20%",
+        pin: true,
+        scrub: true,
+        end:"top 30%",
+        markers: true
+      }
+    });
+    gsap.to(".purple", {
+      scale:1.0,
+      scrollTrigger: {
+        scroller: "#main",
+        trigger: ".orange",
+        start: "top 20%",
+        pin: true,
+        scrub: true,
+        end:"top 30%",
+        markers: true
+      }
+    });
+    gsap.to(".yello", {
+      scale:1.0,
+      scrollTrigger: {
+        scroller: "#main",
+        trigger: ".purple",
+        start: "top 20%",
+        pin: true,
+        scrub: true,
+        end:"top 30%",
+        markers: true
+      }
+    });
+  }
 
   const addHorizontalScrollAnimation = () => {
     let sections = gsap.utils.toArray(".panel");
@@ -156,8 +210,7 @@ function Projects() {
     };
   }, []);
   useEffect(() => {
-    let dabba = document.getElementsByClassName("dabba-wrapper")[0];
-    dabba.classList.add("animate");
+    let dabba;
     function enterAnimation(link, e, index) {
       link.tl.tweenFromTo(0, "midway");
     }
@@ -217,7 +270,14 @@ function Projects() {
         dabba.classList.remove("animate");
       }
     });
-    addHorizontalScrollAnimation();
+    if(window.innerWidth>600){
+      let dabba = document.getElementsByClassName("dabba-wrapper")[0];
+      dabba.classList.add("animate");
+      addHorizontalScrollAnimation();
+    }else{
+      //addScaleAnimation();
+    }
+    
   }, []);
   useEffect(() => {
     if (showMenu == null || showMenu == false) return;
@@ -291,7 +351,7 @@ function Projects() {
                   <video src={p3} muted loop autoPlay className='v1-work'></video>
                 </div>
               </div>
-              <div class="panel purple">
+              <div class="panel yello">
                 <div className="w1-v1">
                   <video src={p4} muted loop autoPlay className='v1-work'></video>
                 </div>

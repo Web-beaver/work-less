@@ -20,7 +20,7 @@ function SearchCards() {
 
     const splicedArray = data.slice(sidx, eidx + 1);
     setCards(splicedArray);
-
+    console.log(splicedArray);
 
   }
   useEffect(() => {

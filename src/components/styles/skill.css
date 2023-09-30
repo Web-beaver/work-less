@@ -275,6 +275,7 @@
     color: rgb(255, 255, 255);
     opacity: 0.5;
     font-weight: 600;
+    text-transform: uppercase;
     font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
     letter-spacing: 4px; 
   }

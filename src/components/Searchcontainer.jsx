@@ -3,7 +3,8 @@ import React,{ useState } from "react";
 
 function Searchcontainer() {
     const [searchTitle, setSearchTitle] = useState("");
-  const displayTags = ["Html", "Css", "MERN", "Python", "NodeJS","Responsive","JavaScript"]
+    const [isActive, setActive] = useState("false");
+  const displayTags = ["Html", "Css", "MERN", "Python", "NodeJS","Responsive","JavaScript"];
   const [tags, setTags] = useState([]);
   const removeTags = (event,tag) => {
     if(event.code == "Backspace"){
@@ -43,7 +44,11 @@ function Searchcontainer() {
         </div>
  
       </div>
-      <div className="display-skills-tags">
+      <div className="display-skills-tags-container">
+      <div className={`display-skills-tags ${isActive ? "hide" : "show"}`}>
+        <div className='fa fa-angle-down' onClick={() => {
+      setActive(!isActive);
+    }}></div>
         <TagGroup>
           {displayTags.map((t) => {
             return (
@@ -51,6 +56,7 @@ function Searchcontainer() {
             )
           })}
         </TagGroup>
+      </div>
       </div>
       </div>
     </div>

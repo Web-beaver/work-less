@@ -17,6 +17,7 @@
     transform: scale(80%,80%);
 
 }
+
 .gif-container:hover{
     filter: grayscale(0);
 }

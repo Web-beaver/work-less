@@ -16,7 +16,6 @@
 
     transform: scale(80%,80%);
 
-
 }
 .gif-container:hover{
     filter: grayscale(0);
@@ -156,6 +155,7 @@ color: white;
     .gif-container{
         height:35vh;
     width: 90%;
+    transform: scale(85%,85%);
     }
     .gif-container>img{
     object-fit: cover;

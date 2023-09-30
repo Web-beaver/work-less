@@ -39,15 +39,15 @@ function Product() {
   const addScaleAnimation = ()=>{
 
     gsap.to(".gif-container", {
-      scale:1.2,
+      scale:1,
       scrollTrigger: {
         scroller: "#main",
         trigger: ".project-container",
-        start: "top 20%",
+        start: "top 28%",
         pin: true,
         scrub: true,
-        end:"top 30%",
-        markers: true
+        end:"top 32%",
+        markers: false
       }
     });
   }
@@ -105,7 +105,6 @@ function Product() {
       }
     });
     setLoco(locoScroll);
-
     const observer = new IntersectionObserver((entries)=>{
   
       entries.forEach((entry)=>{
@@ -137,7 +136,6 @@ function Product() {
       ScrollTrigger.refresh();
     }
     catch (e) {
-
 
     }
     return () => {

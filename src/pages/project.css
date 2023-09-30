@@ -27,7 +27,30 @@
     }
     
 }
-
+.red{
+    filter: grayscale(1);
+    }
+    .orange{
+      filter: grayscale(1);
+    }
+    .purple{
+      filter: grayscale(1);
+    }
+    .yello{
+      filter: grayscale(1);
+    }
+    .red:hover{
+      filter: grayscale(0);
+      }
+      .orange:hover{
+        filter: grayscale(0);
+      }
+      .purple:hover{
+        filter: grayscale(0);
+      }
+      .yello:hover{
+        filter: grayscale(0);
+      }
 .panel {
     display: flex;
     height: 100%;

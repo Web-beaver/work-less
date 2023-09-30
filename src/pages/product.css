@@ -16,8 +16,8 @@
 
     transform: scale(80%,80%);
 
-
 }
+
 .gif-container:hover{
     filter: grayscale(0);
 }
@@ -44,6 +44,7 @@
 .paragraph{
     font-size: 1.5rem;
     padding: 20px;
+    margin:0px 5px;
 }
 .horizontal-line{
     width: 80%;
@@ -156,6 +157,7 @@ color: white;
     .gif-container{
         height:35vh;
     width: 90%;
+    transform: scale(85%,85%);
     }
     .gif-container>img{
     object-fit: cover;

@@ -115,7 +115,7 @@ function Projects() {
         scrub: 1,
         snap: 1 / (sections.length - 1),
         end: "+=8000",
-        markers: true
+        markers: false
       }
     });
   }

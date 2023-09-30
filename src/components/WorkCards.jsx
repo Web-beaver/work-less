@@ -15,7 +15,7 @@ function WorkCards({title,para,imageurl,cardText,backcolor}) {
           <h2>{title}</h2>
           <i class="fas fa-arrow-right"></i>
           <p>{para}</p>
-          <div class="pic" style={{backgroundImage:`url(${ohio})`}}></div>
+          <div class="pic" style={{backgroundImage:`url(${imageurl})`}}></div>
           <ul>
             <li></li>
             <li></li>

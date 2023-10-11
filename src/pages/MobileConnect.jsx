@@ -48,29 +48,7 @@ function MobileConnect() {
   const [loco, setLoco] = useState(null);
   const emailBtn = useRef();
   const [onSuccess, setOnSuccess] = useState("");
-  const getMailId = async () => {
-
-    await fetch("http://localhost:8000/sendemail", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify({ email, message })
-    }).then(res => {
-      if (res.status === 201) {
-        setOnSuccess("Sent");
-        setemail("");
-        setmessage("");
-      } else {
-        setOnSuccess("Failed!")
-      }
-    })
-      .catch(err => {
-        setOnSuccess("Failed!")
-      });
-
-
-  }
+  
 
   const sendEmail = (event) => {
 
@@ -78,14 +56,16 @@ function MobileConnect() {
 
 
 
-    const serviceID = 'default_service';
-    const templateID = 'template_ltl49k5';
-
-    emailjs.sendForm(serviceID, templateID, emailBtn.current, "R8ExsPy3gbCdxglF4")
+    const serviceID = 'service_p4gz26b';
+    const templateID = 'template_108xj5u';
+    
+    emailjs.sendForm(serviceID, templateID, emailBtn.current, "f3nSYP6GeF8JLWMil")
       .then(() => {
-        alert('Sent!');
+        setOnSuccess("Sent");
+        setemail("");
+        setmessage("");
       }, (err) => {
-        alert(JSON.stringify(err));
+        setOnSuccess("Failed!")
       });
   }
 
@@ -414,23 +394,23 @@ function MobileConnect() {
             </div>
             <div className="connect-options">
               <div className="connect-option-list">
-                <FontAwesomeIcon icon={faYoutube} size='2x' style={{ color: 'white', opacity: "0.7" }} />
+                <FontAwesomeIcon icon={faYoutube} size='2x' style={{ color: 'white', opacity: "0.7" }} href='https://www.youtube.com/@_codingBeaverX_/'/>
               </div>
               <div className="connect-option-list">
-                <FontAwesomeIcon icon={faGithub} size='2x' style={{ color: 'white', opacity: "0.7" }} />
+                <FontAwesomeIcon icon={faGithub} size='2x' style={{ color: 'white', opacity: "0.7" }} href='https://github.com/ishn123'/>
               </div>
               <div className="connect-option-list">
-                <FontAwesomeIcon icon={faXTwitter} size='2x' style={{ color: 'white', opacity: "0.7" }} />
+                <FontAwesomeIcon icon={faXTwitter} size='2x' style={{ color: 'white', opacity: "0.7" }} href='https://twitter.com/_WebBeaverX_'/>
               </div>
               <div className="connect-option-list">
-                <FontAwesomeIcon icon={faLinkedinIn} size='2x' style={{ color: 'white', opacity: "0.7" }} />
+                <FontAwesomeIcon icon={faLinkedinIn} size='2x' style={{ color: 'white', opacity: "0.7" }} href='https://www.linkedin.com/in/ishan-arora-2000/'/>
               </div>
             </div>
 
-            <div className="write-message">
+            <form className="write-message" onSubmit={(event)=>sendEmail(event)} ref={emailBtn}>
 
               <div className="input-custom-message-area">
-                <input type="text" name="" id="" className='text-area-message' value={email} onChange={(e) => {
+                <input type="email" name="to_email" id="to_email" className='text-area-message' value={email} onChange={(e) => {
                   setemail(e.target.value);
                 }} placeholder={"Email"} style={{ marginTop: "5px", marginBottom: "5px" }} />
                 <textarea rows={10} cols={150} wrap='soft' value={message} onChange={(e) => {
@@ -442,7 +422,7 @@ function MobileConnect() {
               </div>
 
               <div className="send-message-button-wrapper">
-                <button class="button" onClick={() => getMailId()}>
+                <button class="button">
                   <span class="default">Send</span>
                   <span class="success">{onSuccess}</span>
                   <div class="left"></div>
@@ -450,7 +430,7 @@ function MobileConnect() {
                 </button>
               </div>
 
-            </div>
+            </form>
 
             <div className="separation-line"></div>
             <div className="subscribe-content">

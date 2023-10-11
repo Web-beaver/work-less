@@ -10,57 +10,54 @@ import { scrollAnimation } from '../components/Navbar';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/all';
 import "./product.css";
-import ohio from "../ohio.gif"
+
 import IshanResume from "../Ishan.pdf";
 import SanyamResume from "../sanyam_main_resume.pdf";
 import Sphere from "../Sphere.mp4";
+import { useSelector } from 'react-redux';
 gsap.registerPlugin(ScrollTrigger);
-// gsap.registerPlugin(ScrollTrigger);
-// let tl = gsap.timeline();
-// tl.to(".content-header-skill",{
-//   opacity:1,
-//   transition: "all 0.7s ease-in-out"
-// }).to(".content-header-skill",{marginLeft:"10px"},">0.25");
-// const fadeInanimation = () => {
-//   ScrollTrigger.create({
-//     scroller:"#main",
-//     trigger: ".skills-container",
-//     start: "top 30%",
-//     end: "center 30%",
-//     markers: true,
-//     toggleClass: "show-box",
-//     animation:tl,
-//     toggleActions:"play none none reverse",
-//   })
-// }
+
 function Product() {
   const navigate = useNavigate();
 
-  const addScaleAnimation = ()=>{
+  const addScaleAnimation = () => {
+    try {
 
-    gsap.to(".gif-container", {
-      scale:1,
-      scrollTrigger: {
-        scroller: "#main",
-        trigger: ".project-container",
-        start: "top 28%",
-        pin: true,
-        scrub: true,
-        end:"top 32%",
-        markers: false
-      }
-    });
+
+      gsap.to(".gif-container", {
+        scale: 1,
+        scrollTrigger: {
+          scroller: "#main",
+          trigger: ".project-container",
+          start: "top 28%",
+          pin: true,
+          scrub: true,
+          end: "top 32%",
+          markers: false
+        }
+      });
+    } catch {
+
+    }
   }
 
   const [dateState, setDateState] = useState(new Date());
   const [showMenu, setShowMenu] = useState(null);
   const [mobileMenu, setMobileMenu] = useState(false);
   const [loco, setLoco] = useState(null);
+
+  const data = new URLSearchParams(window.location.search);
+  
+
   const attachScrollEvent = (locoScroll) => {
-    locoScroll.on("scroll", () => {
-      let tl = scrollAnimation(showMenu, setShowMenu);
-      tl.restart();
-    })
+    try {
+      locoScroll.on("scroll", () => {
+        let tl = scrollAnimation(showMenu, setShowMenu);
+        tl.restart();
+      })
+    } catch {
+
+    }
   }
 
   useEffect(() => {
@@ -94,6 +91,7 @@ function Product() {
     };
   }, [mobileMenu]);
   useEffect(() => {
+    
     const locoScroll = new LocomotiveScroll({
       el: document.querySelector('#main'),
       smooth: true,
@@ -105,32 +103,26 @@ function Product() {
       }
     });
     setLoco(locoScroll);
-    const observer = new IntersectionObserver((entries)=>{
-  
-      entries.forEach((entry)=>{
-        if(entry.isIntersecting && !entry.target.classList.contains("show")){
-          entry.target.classList.add("show");
-        }
-        // if(!entry.isIntersecting && entry.target.classList.contains("show")){
-        //   entry.target.classList.remove("show");
-        // }
-      })
-    },{
-      // root:document.querySelector(".project-container"),
-      // rootMargin:"2px",
-      threshold:0.95
-    })
+    
+    try {
+      locoScroll.on("scroll", ScrollTrigger.update);
+      try{
+      ScrollTrigger.scrollerProxy("#main", {
+        scrollTop(value) {
+          return arguments.length ? locoScroll.scrollTo(value, 0, 0) : locoScroll.scroll.instance.scroll.y;
+        },
+        getBoundingClientRect() {
+          return { top: 0, left: 0, width: window.innerWidth, height: window.innerHeight };
+        },
+        
+        pinType: document.querySelector("#main").style.transform ? "transform" : "fixed"
+      });
+    }catch{
+      
+    }
+    } catch {
 
-    locoScroll.on("scroll", ScrollTrigger.update);
-    ScrollTrigger.scrollerProxy("#main", {
-      scrollTop(value) {
-        return arguments.length ? locoScroll.scrollTo(value, 0, 0) : locoScroll.scroll.instance.scroll.y;
-      },
-      getBoundingClientRect() {
-        return { top: 0, left: 0, width: window.innerWidth, height: window.innerHeight };
-      },
-      pinType: document.querySelector("#main").style.transform ? "transform" : "fixed"
-    });
+    }
     try {
       ScrollTrigger.addEventListener('refresh', () => locoScroll.update());
       ScrollTrigger.refresh();
@@ -191,11 +183,16 @@ function Product() {
         });
       }
     });
-    addScaleAnimation();
+    setTimeout(()=>{addScaleAnimation();},1200)
+    
   }, []);
   useEffect(() => {
-    if (showMenu == null || showMenu == false) return;
-    attachScrollEvent(loco);
+    try {
+      if (showMenu == null || showMenu == false) return;
+      attachScrollEvent(loco);
+    } catch {
+
+    }
   }, [showMenu])
   const showResumeAnimation = (event) => {
     event.stopPropagation()
@@ -235,43 +232,43 @@ function Product() {
         <div id="main" data-scroll-container data-scroll-speed="2">
           <Navbar showMenu={showMenu} setShowMenu={setShowMenu} mobile={mobileMenu} toggleMenu={setMobileMenu} id="nav"></Navbar>
           <div className="cont" data-scroll data-scroll-sticky data-scroll-target="#main">
-            <div className="work mobn">Veneria
+            <div className="work mobn">{data?.get("Title")}
             </div>
           </div>
           <div className="project-container">
             <div className="gif-container">
-                <img src={ohio} alt=""/>
+              <img src={data?.get("url")} alt="" />
             </div>
             <div className="description-container">
-              <div className="paragraph">Veneria clone.</div>
+              <div className="paragraph">{data?.get("para")}</div>
               <div className="overview"><h2>(OVERVIEW)</h2>
-              <div className="overview-content">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nulla natus nam alias tempore beatae cum sapiente, facilis illum nobis, nisi doloribus sequi, nostrum saepe fuga ex harum? Porro, quo optio?</div>
+                <div className="overview-content">{data?.get("shortdesc")}</div>
               </div>
             </div>
-            <hr className='horizontal-line'/>
+            <hr className='horizontal-line' />
             <div className="description-details">
-                <div className="description">
-                    <h2>(DESC)</h2>
-                    <div className="description-content">Lorem ipsum dolor sit amet consectetur adipisicing elit. Itaque nobis fuga repellendus, excepturi quibusdam vitae porro rerum, eligendi hic possimus maiores in. Et, ratione dolore! Dignissimos recusandae repellat esse officia ratione est eligendi! Nesciunt deleniti porro necessitatibus at minima nulla! Officia nesciunt quia ducimus omnis nisi, et odit hic molestiae esse corporis maxime delectus assumenda commodi quisquam, cum nihil modi natus. Quasi, ea ipsum accusamus soluta labore expedita quod dicta tenetur enim excepturi qui quae cumque sunt accusantium reiciendis ratione sequi ad dolores voluptatibus nesciunt quia. Non placeat nam iure quibusdam, maxime natus odio, nihil recusandae ab optio dolorem consectetur.</div>
+              <div className="description">
+                <h2>Description</h2>
+                <div className="description-content">{data?.get("desc")}</div>
+              </div>
+              <div className="description-buttons">
+                <button className="project-live-button" onClick={()=>window.location.href = data?.get("previewlink")}>Preview</button>
+                <button className="project-source-button" onClick={()=>window.location.href = data?.get("sourcecodelink")}>Source</button>
+                <div className="Button-note">
+                  <h2>(NOTE)</h2>
+                  <div className="Note-content">I'm excited to work with you <span onClick={() => showConnectBox()}>Connect with me!</span> While my source code is limited to demos, I'm ready to create even greater solutions for you.</div>
                 </div>
-                <div className="description-buttons">
-                    <button className="project-live-button">Preview</button>
-                    <button className="project-source-button">Source</button>
-                    <div className="Button-note">
-                        <h2>(NOTE)</h2>
-                        <div className="Note-content">I'm excited to work with you <span onClick={() => showConnectBox()}>Connect with me!</span> While my source code is limited to demos, I'm ready to create even greater solutions for you.</div>
-                    </div>
-                </div>
+              </div>
             </div>
             <div className="sphere-video">
-            <video src={Sphere} muted loop autoPlay></video></div>
+              <video src={Sphere} muted loop autoPlay></video></div>
             <div className="vision-details">
-                <h1>VISION</h1>
-                <div className="goal-details">
+              <h1>VISION</h1>
+              <div className="goal-details">
                 Empower the digital world with web development that seamlessly blends innovation and aesthetics. Craft immersive user experiences, harness cutting-edge technologies, and champion responsive, user-centric designs. Elevate websites to artful platforms where functionality harmonizes with beauty, setting new standards in the online landscape.
                 <div className='vision-quote'>"In the world of web development, we're not just writing code; we're crafting digital experiences that shape the future of the internet, where creativity and functionality converge to build a better online world."
                 </div>
-                </div>
+              </div>
             </div>
           </div>
           <Footer dateState={dateState}></Footer>

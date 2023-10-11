@@ -121,8 +121,8 @@ function Hero() {
         </div>
         <Clients></Clients>
         <div id="herofooter">
-          <a href="#" className='js-work-link op' onClick={()=>navigateHandler('/skills')}>Working on Web <FiArrowUpRight className='arr'></FiArrowUpRight><span className='underline'></span></a>
-          <a href="#" className='js-work-link op' onClick={()=>navigateHandler('/projects')}>Developing Projects<FiArrowUpRight className='arr'></FiArrowUpRight><span className='underline'></span></a>
+          <a className='js-work-link op' onClick={()=>navigateHandler('/skills')}>Working on Web <FiArrowUpRight className='arr'></FiArrowUpRight><span className='underline'></span></a>
+          <a className='js-work-link op' onClick={()=>navigateHandler('/projects')}>Developing Projects<FiArrowUpRight className='arr'></FiArrowUpRight><span className='underline'></span></a>
           <div id="iconset">
             <div class="circle"> <IoArrowDownSharp></IoArrowDownSharp> </div>
             <div class="circle"> <IoArrowDownSharp></IoArrowDownSharp> </div>
@@ -149,7 +149,7 @@ function Hero() {
         </div>
 
       </div>
-      <About src1={loh}></About>
+      <About src1={Ny}></About>
     </div>
   )
 }

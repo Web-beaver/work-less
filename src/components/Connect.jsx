@@ -9,31 +9,24 @@ function Connect() {
   const [message, setmessage] = useState("");
   const emailBtn = useRef();
   const [onSuccess, setOnSuccess] = useState("");
-  const getMailId = async () => {
+  const sendEmail = (event) => {
 
-    await fetch("http://localhost:8000/sendemail", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify({ email, message })
-    }).then(res => {
-      if (res.status === 201) {
+    event.preventDefault();
+
+    const serviceID = 'service_p4gz26b';
+    const templateID = 'template_108xj5u';
+    
+    emailjs.sendForm(serviceID, templateID, emailBtn.current, "f3nSYP6GeF8JLWMil")
+      .then(() => {
         setOnSuccess("Sent");
         setemail("");
         setmessage("");
-      } else {
-        setOnSuccess("Failed!")
-      }
-    })
-      .catch(err => {
+      }, (err) => {
         setOnSuccess("Failed!")
       });
-
-
   }
 
-  
+
   const turnOffConnect = () => {
     const connectBoxClose = document.getElementsByClassName("connect-card")[0];
     connectBoxClose.classList.add("connect-box-pop-up-skill");
@@ -166,23 +159,23 @@ function Connect() {
       </div>
       <div className="connect-options">
         <div className="connect-option-list">
-          <FontAwesomeIcon icon={faYoutube} size='2x' style={{ color: 'white', opacity: "0.7" }} />
+          <FontAwesomeIcon icon={faYoutube} size='2x' style={{ color: 'white', opacity: "0.7" }} onClick={()=>window.location.href='https://www.youtube.com/@_codingBeaverX_/'} />
         </div>
         <div className="connect-option-list">
-          <FontAwesomeIcon icon={faGithub} size='2x' style={{ color: 'white', opacity: "0.7" }} />
+          <FontAwesomeIcon icon={faGithub} size='2x' style={{ color: 'white', opacity: "0.7" }} onClick={()=>window.location.href='https://github.com/ishn123'} />
         </div>
         <div className="connect-option-list">
-          <FontAwesomeIcon icon={faXTwitter} size='2x' style={{ color: 'white', opacity: "0.7" }} />
+          <FontAwesomeIcon icon={faXTwitter} size='2x' style={{ color: 'white', opacity: "0.7" }} onClick={()=>window.location.href='https://twitter.com/_WebBeaverX_'} />
         </div>
         <div className="connect-option-list">
-          <FontAwesomeIcon icon={faLinkedinIn} size='2x' style={{ color: 'white', opacity: "0.7" }} />
+          <FontAwesomeIcon icon={faLinkedinIn} size='2x' style={{ color: 'white', opacity: "0.7" }} onClick={()=>window.location.href='https://www.linkedin.com/in/ishan-arora-2000/'} />
         </div>
       </div>
 
-      <div className="write-message">
+      <form className="write-message" onSubmit={(event) => sendEmail(event)} ref={emailBtn}>
 
         <div className="input-custom-message-area">
-          <input type="text" name="" id="" className='text-area-message' value={email} onChange={(e) => {
+          <input type="email" name="to_email" id="to_email" className='text-area-message' value={email} onChange={(e) => {
             setemail(e.target.value);
           }} placeholder={"Email"} style={{ marginTop: "5px", marginBottom: "5px" }} />
           <textarea rows={10} cols={150} wrap='soft' value={message} onChange={(e) => {
@@ -194,7 +187,7 @@ function Connect() {
         </div>
 
         <div className="send-message-button-wrapper">
-          <button class="button" onClick={() => getMailId()}>
+          <button class="button">
             <span class="default">Send</span>
             <span class="success">{onSuccess}</span>
             <div class="left"></div>
@@ -202,10 +195,10 @@ function Connect() {
           </button>
         </div>
 
-      </div>
+      </form>
 
       <div className="separation-line"></div>
-      <div className="subscribe-content" style={{ marginTop: "15px"}}>
+      <div className="subscribe-content" style={{ marginTop: "15px" }}>
         <div className="button-subscribe-connect">
           <a class="bmc-button" target="_blank" href="https://www.buymeacoffee.com/aroraishan">
             <img src="https://www.buymeacoffee.com/assets/img/BMC-btn-logo.svg" alt="Buy me a coffee" />

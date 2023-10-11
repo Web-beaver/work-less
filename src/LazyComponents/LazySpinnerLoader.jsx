@@ -3,9 +3,12 @@ import React from 'react'
 
 function LazySpinnerLoader() {
   return (
-    <section>
-        <span className="loader-43"></span>
+    <div className="new-wrapper-loader-container">
+      <section>
+      <div id="loader"></div>
     </section>
+    </div>
+    
   )
 }
 

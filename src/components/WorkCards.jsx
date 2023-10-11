@@ -1,11 +1,12 @@
 import React from 'react'
-import { useNavigate } from "react-router-dom";
+import { useNavigate,createSearchParams } from "react-router-dom";
 import './Cards.css'
-import ohio from "../ohio.gif"
-function WorkCards({title,para,imageurl,cardText,backcolor}) {
-  const navigate = useNavigate();
 
+function WorkCards({title,para,imageurl,cardText,backcolor,tags,desc,previewlink,sourcecodelink}) {
+  const navigate = useNavigate();
+  const queryParams = {Title:title,para:para,url:imageurl,shortdesc:cardText,desc:desc,sourcecodelink,previewlink}
   const navigateHandler = (path) => {
+    
     navigate(path);
   }
   return (
@@ -44,17 +45,17 @@ function WorkCards({title,para,imageurl,cardText,backcolor}) {
             <li></li>
           </ul>
          
-          <button style={{backgroundColor:`${backcolor}`}} onClick={() => { navigateHandler('/projectone'); }}>
+          <button style={{backgroundColor:`${backcolor}`}} onClick={() => { navigateHandler(`/projectone?${createSearchParams(queryParams)}`) }}>
           </button>
         </div>
           <div class="card card2">
             <div class="card-text">{cardText}</div>
             <div class="card-tags">
-                <div class="card-tag-text">HTML</div>
-                <div class="card-tag-text">CSS</div>
-                <div class="card-tag-text">JavaScript</div>
-                <div class="card-tag-text">MERN</div>
-                <div class="card-tag-text">Responsive</div>
+              {Object.keys(tags).map(item=>{
+                return (
+                  <div class="card-tag-text">{item}</div>
+                )
+              })}
              </div>
             <ul>   
                 <li></li>

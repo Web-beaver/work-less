@@ -192,7 +192,7 @@
 
 }
 
-.hidden.show {
+.hidden.shows {
     transition: all 1s;
     transform: translateX(0);
     filter: blur(0);

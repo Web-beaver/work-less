@@ -14,8 +14,15 @@ import SideBar from './components/SideBar';
 import Connect from './components/Connect';
 import Helmet from "react-helmet";
 import Glitch from './components/Glitch';
+import { useDispatch, useSelector } from 'react-redux';
+import {fetchDataStrapi} from "../src/Slices/dataSlice";
+import MobileWork from './pages/MobileWork';
 
-function Root() {
+function Root({store:store}) {
+ 
+  const dispatch = useDispatch();
+  const storeLoader = useSelector((state)=>state.preloader.loading);
+  
   const location = useLocation();
   const [dateState, setDateState] = useState(new Date());
   const [loading, setLoading] = useState(true);
@@ -36,10 +43,15 @@ function Root() {
   }, [])
 
   useEffect(() => {
-    setTimeout(() => {
+    dispatch(fetchDataStrapi(1));
+    
+  },[]);
+  useEffect(()=>{
+    if(storeLoader==false){
+      
       slideUp();
-    }, 12000);
-  }, [])
+    }
+  },[storeLoader]);
   return (
     <>
       <Preloader></Preloader>
@@ -49,13 +61,19 @@ function Root() {
             <Route path='/' element={<App mobileMenu={mobileMenu} setMobileMenu={setMobileMenu} dateState={dateState} setDateState={setDateState}></App>}></Route>
             <Route path='/skills' element={mobileMenu == false ? (<Skills></Skills>) : (<MobileSkillPage></MobileSkillPage>)}></Route>
             <Route path='/experience' element={<Experience></Experience>}></Route>
+            {mobileMenu && (
+              <Route path='/projects' element={<MobileWork></MobileWork>}></Route>
+              
+            )}
             <Route path='/projects' element={<Projects></Projects>}>
             </Route>
             
             <Route path="/projectone" element={<Product></Product>}></Route>
             {mobileMenu && (
               <Route path='/connect' element={<MobileConnect></MobileConnect>}></Route>
+              
             )}
+            
             <Route path='*' element={<Glitch></Glitch>}></Route>
           </Routes>
         </AnimatePresence>

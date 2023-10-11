@@ -40,32 +40,7 @@ function App({ mobileMenu, setMobileMenu, dateState, setDateState }) {
     setLoco(locoScroll);
 
 
-    // ScrollTrigger.matchMedia({
-    //   "(min-width:1400px)":function (){
-    //     locoScroll.on( 'scroll', ( instance ) => {
-    //       console.log("Scrolling....");
-    //       ScrollTrigger.update();
-    //       document.documentElement.setAttribute( 'data-scrolling', instance.direction );
-    //     });
-    //     ScrollTrigger.scrollerProxy("#main", {
-    //       scrollTop(value) {
-    //         return arguments.length ? locoScroll.scrollTo(value, 0, 0) : locoScroll.scroll.instance.scroll.y;
-    //       }, 
-    //       getBoundingClientRect() {
-    //      return {top: 0, left: 0, width: window.innerWidth, height: window.innerHeight};
-    //       },
-    //       pinType: document.querySelector("#main").style.transform ? "transform" : "fixed"
-    //     });
-    //     try{ ScrollTrigger.addEventListener( 'refresh', () => locoScroll.update() );
-    //     ScrollTrigger.refresh();}
-    //     catch(e){
-
-    //     }
-
-    //     scrollAnimation(showMenu,setShowMenu);
-    //   },
-    //   "(max-width:1400px)":()=>{console.log("Johny");}
-    // })
+    
     return () => {
       locoScroll.destroy();
     };
@@ -136,13 +111,13 @@ function App({ mobileMenu, setMobileMenu, dateState, setDateState }) {
 
     event.stopPropagation()
     const r1 = document.getElementsByClassName("side-lancer-1")[0];
-    const r2 = document.getElementsByClassName("side-lancer-2")[0];
+    // const r2 = document.getElementsByClassName("side-lancer-2")[0];
     if (r1.classList.contains("showit")) {
       r1.classList.remove("showit");
-      r2.classList.remove("showit");
+      // r2.classList.remove("showit");
     } else {
       r1.classList.add("showit");
-      r2.classList.add("showit");
+    //   r2.classList.add("showit");
     }
 
 
@@ -171,9 +146,9 @@ function App({ mobileMenu, setMobileMenu, dateState, setDateState }) {
               <div className="side-lancer-1" onClick={(event)=>event.stopPropagation()}>
                 <a href={IshanResume} target="_blank">I</a>
               </div>
-              <div className="side-lancer-2" onClick={(event)=>event.stopPropagation()}>
+              {/* <div className="side-lancer-2" onClick={(event)=>event.stopPropagation()}>
                 <a href={SanyamResume} target="_blank">S</a>
-              </div>
+              </div> */}
               <div id="resume" onClick={(event) => showResumeAnimation(event)}>Resume</div>
             </div>
             <div id="minicircle"></div>

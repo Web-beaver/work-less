@@ -1,67 +1,117 @@
 import Searchcontainer from "./Searchcontainer";
 import { Suspense, useEffect, useState } from "react";
 import WorkCards from "./WorkCards";
-import data from "../data/cards_data.json";
+// import data from "../data/cards_data.json";
 import "./Cards.css"
-import InfiniteScroll from "react-infinite-scroller";
 import LazySpinnerLoader from "../LazyComponents/LazySpinnerLoader";
-import { lazy } from "react";
+import Page from "./Page";
+import { useDispatch, useSelector } from "react-redux";
+import { actions } from "../Slices/dataSlice";
+import { Loader } from "rsuite";
+import NoRecord from "./NoRecordsFound/NoRecord";
+function SearchCards({chunckSize}) {
+  const dispatch = useDispatch();
+  const data = useSelector(state => state.preloader.fdata);
+  const searchStatus = useSelector(state => state.preloader.searchingStatus);
 
-function SearchCards() {
-
-  const chunckSize = 4;
-
-  const [cards, setCards] = useState(data.slice(0, chunckSize));
-  const navigateNext = (idx) => {
-
-
-    let sidx = ((chunckSize * (idx))) % data.length;
-    let eidx = Math.min(data.length - 1, sidx + chunckSize - 1);
-
-    const splicedArray = data.slice(sidx, eidx + 1);
-    setCards(splicedArray);
-    console.log(splicedArray);
-
+  const response = { status: "pending", data: null }
+  const sleep = (time) => {
+    return new Promise((resolve, reject) => {
+      setTimeout(() => {
+        resolve();
+      }, time);
+    })
   }
-  useEffect(() => {
-    const pagesBtn = document.querySelectorAll(".pagination-ul li");
-    const clearActivePage = () => {
-      pagesBtn.forEach((el) => el.classList.remove("active"));
+  const suspend = (fn) => {
+    const suspender = fn().then(
+      (res) => {
+        response.status = 'success';
+        response.data = res;
+      },
+      (error) => {
+        response.status = 'error';
+        response.data = error;
+      }
+    );
+
+    switch (response.status) {
+      case 'pending':
+        throw suspender;
+      case 'error':
+        throw response.data;
+      default:
+        return response.data;
+    }
+  }
+
+
+
+  const [cards, setCards] = useState(data.slice(0, Math.min(data.length, chunckSize)));
+
+
+  
+
+  const Temporary = () => {
+    if (searchStatus) {
+
+      const data = suspend(async () => {
+        await sleep(500);
+        return 10;
+      })
+
+      dispatch(actions.updateSearchStatus({ val: false }));
     }
 
-    pagesBtn.forEach((el) => {
-      el.addEventListener("click", () => {
-        clearActivePage();
-        el.classList.add("active");
-      })
-    })
-    pagesBtn[0].classList.add("active");
-  }, [])
+  }
+
+  useEffect(() => {
+    setCards(data.slice(0, Math.min(data.length, chunckSize)))
+  }, [data])
   return (
     <div className="App-header">
-      <Searchcontainer></Searchcontainer>
+      <Searchcontainer chunckSize={chunckSize}></Searchcontainer>
       <div className="projects-card-container">
         <div className="skill-card-show">
-            <div class="container">
-              {cards?.map(card => {
-                return (
-                  <WorkCards title={card.title} para={card.para} imageurl={card.image} cardText={card.desc} backcolor={card.bgcolor}></WorkCards>
+          <div class="container">
+            {
+              cards?.length != 0 ?
+                (
+                  <Suspense fallback={<LazySpinnerLoader></LazySpinnerLoader>}>
+
+                    {searchStatus === false ?
+                      (cards?.map(card => {
+                        return (
+
+                          <WorkCards title={card?.attributes?.Title} para={card?.attributes?.para} imageurl={card?.attributes?.imageUrl?.data?.attributes?.url} cardText={card?.attributes?.shortdesc} backcolor={card?.attributes?.buttoncolor} tags={card?.attributes?.tags} desc={card?.attributes?.Description} previewlink={card?.attributes?.previewlink} sourcecodelink={card?.attributes?.sourcecodelink}></WorkCards>
+
+                        )
+                      })) :
+                      (
+                        <Temporary></Temporary>
+                      )
+                    }
+
+                    {/* <LazySpinnerLoader></LazySpinnerLoader> */}
+                  </Suspense>)
+                // (
+                //   <LazySpinnerLoader></LazySpinnerLoader>
+                // )
+                :
+                (
+                  <NoRecord></NoRecord>
                 )
-              })}
-              
-            </div>
+             
+            }
+          </div>
+
+
 
         </div>
 
       </div>
       <div className="pagination-content">
         <ul class="pagination-ul">
-          {Array.from({ length: Math.ceil(data.length / chunckSize) }, () => Math.random()).map((ele, idx) => {
-
-            return (
-              <li role="presentation" onClick={() => navigateNext(idx)}><button></button></li>
-            )
-          })}
+          <Page data={data} cards={cards} setCards={setCards} chunckSize={chunckSize}></Page>
         </ul>
       </div>
     </div>

@@ -99,7 +99,7 @@ i {
 
   .container {
     width: 100%;
-    height: fit-content;
+    height: 100%;
     padding: 30px;
     padding-top: 10px;
     display: flex;
@@ -202,10 +202,10 @@ i {
     filter: grayscale(100%);
   }
   .card3 .pic{
-      background-image: url("../ohio.gif");
+      background-image: url();
   }
   .card4 .pic{
-      background-image: url("../jio.gif");
+      background-image: url();
   }
   .card .social {
     position: absolute;
@@ -365,9 +365,7 @@ i {
     display: inline-flex;
   }
   @media only screen and (max-width: 600px) {
-    .tagging-area{
-      display: none;
-    }
+    
     .regular-search-text{
       padding-left: 15px;
     }

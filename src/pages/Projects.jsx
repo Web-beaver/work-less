@@ -103,7 +103,7 @@ function Projects() {
 
   const addHorizontalScrollAnimation = () => {
     let sections = gsap.utils.toArray(".panel");
-    console.log(sections);
+ 
     gsap.to(sections, {
       xPercent: -100 * (sections.length - 1),
       ease: "none",
@@ -273,9 +273,14 @@ function Projects() {
     if(window.innerWidth>600){
       let dabba = document.getElementsByClassName("dabba-wrapper")[0];
       dabba.classList.add("animate");
-      addHorizontalScrollAnimation();
+      
+      
+        addHorizontalScrollAnimation();
+      
+      
     }else{
       //addScaleAnimation();
+      
     }
     
   }, []);
@@ -359,7 +364,7 @@ function Projects() {
             </div>
           </div>
           <div className="main-work-wrapper">
-            <SearchCards></SearchCards>
+            <SearchCards chunckSize={4}></SearchCards>
           </div>
 
 

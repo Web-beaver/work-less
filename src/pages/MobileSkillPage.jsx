@@ -128,9 +128,9 @@ function MobileSkillPage() {
       entries.forEach((entry) => {
 
         if (entry.isIntersecting && !entry.target.classList.contains("text-animate") && !entry.target.classList.contains("build-in-scale-down") && !entry.target.classList.contains("deployment-sticker")) {
-          entry.target.classList.add("show")
+          entry.target.classList.add("shows")
         } else {
-          entry.target.classList.remove("show")
+          entry.target.classList.remove("shows")
         }
         if (entry.target.classList.contains("text-animate")) {
 
